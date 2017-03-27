@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.WindowManager;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class ScrollingActivity extends AppCompatActivity {
         mContentVp.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
     }
 
-    private class FragmentAdapter extends FragmentPagerAdapter{
+    private class FragmentAdapter extends FragmentPagerAdapter implements ContentFragment.ScrollListener{
 
         private List<ContentFragment> mFraments = new ArrayList<>();
 
@@ -41,6 +43,8 @@ public class ScrollingActivity extends AppCompatActivity {
             mFraments.add(new ContentFragment());
             mFraments.add(new ContentFragment());
             mFraments.add(new ContentFragment());
+
+            ContentFragment.ScrollObserver.getObserver().setListener(this);
         }
 
         @Override
@@ -51,6 +55,13 @@ public class ScrollingActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return mFraments.size();
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            Log.i("abwbw57","onScrolled:" + dy);
+
+
         }
     }
 

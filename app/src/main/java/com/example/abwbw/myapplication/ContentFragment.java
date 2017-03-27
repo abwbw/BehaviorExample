@@ -30,9 +30,18 @@ public class ContentFragment extends Fragment {
         mContentRv = (RecyclerView) contentView.findViewById(R.id.content_rv);
         mContentRv.setLayoutManager(new LinearLayoutManager(getContext()));
         mContentRv.setAdapter(new ContentAdapter());
+//        mContentRv.setNestedScrollingEnabled(false);
         initData();
 
+        ScrollObserver.getObserver().register(mContentRv);
+
         return contentView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        ScrollObserver.getObserver().unregister(mContentRv);
+        super.onDestroyView();
     }
 
     private void initData(){
@@ -85,5 +94,45 @@ public class ContentFragment extends Fragment {
         public int getItemCount() {
             return mContentData.size();
         }
+    }
+
+
+    public static class ScrollObserver extends RecyclerView.OnScrollListener {
+        private static final ScrollObserver observer = new ScrollObserver();
+
+        private ScrollListener listener;
+
+        public static ScrollObserver getObserver(){
+            return observer;
+        }
+
+        public void register(RecyclerView recyclerView){
+            recyclerView.addOnScrollListener(this);
+        }
+
+        public void unregister(RecyclerView recyclerView){
+            recyclerView.removeOnScrollListener(this);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            if(listener != null){
+                listener.onScrolled(recyclerView, dx, dy);
+            }
+        }
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        public void setListener(ScrollListener listener){
+            this.listener = listener;
+        }
+    }
+
+    public interface ScrollListener{
+        void onScrolled(RecyclerView recyclerView, int dx, int dy);
     }
 }
