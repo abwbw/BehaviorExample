@@ -1,0 +1,86 @@
+<com.example.abwbw.myapplication.CoordinatorLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_behavior="com.example.abwbw.myapplication.HeadBehavior"/>-->
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffff0000"
+        android:orientation="vertical"
+        app:layout_behavior="com.example.abwbw.myapplication.PullDownBehavior">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/head_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff00"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 1"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 2"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 3"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 4"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 5"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 6"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 7"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="this is head 8"/>
+            </LinearLayout>
+
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/content_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff0000ff" />
+    </LinearLayout>
+
+</com.example.abwbw.myapplication.CoordinatorLayoutCompat>
+
+
